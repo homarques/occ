@@ -50,10 +50,12 @@ You only need to set which class(es) will be the inlier (aka target) class.</br>
 
 Setting class 1 as inlier class:</br>
 ```oc_data = oc_set(iris2d, [1]);```</br>
+```scatterd(oc_data, 'legend');```</br>
 <p align="center"><img src="/Figures/oc_iris1.png" width="40%" height="40%"></p>
 
 Setting classes 1 and 2 as inlier class:</br>
 ```oc_data = oc_set(iris2d, [1 2]);``` </br>
+```scatterd(oc_data, 'legend');```</br>
 <p align="center"><img src="/Figures/oc_iris12.png" width="40%" height="40%"></p>
 
 - Holdout</br>
@@ -61,11 +63,24 @@ In order to partition data into training and testing, we can use the command [ge
 ```[train, test] = gendat(oc_data, 0.8);```</br>
 
 #### Algorithms
-- One-class classification algorithms
-  - Gaussian Mixture Model (GMM), Parzen Window (PW), Support Vector Data Description (SVDD), Linear Programming (LP), k-Nearest Neighbor Data Description  (kNN<sub>local</sub>), Auto-Encoder, and Deep SVDD (DSVDD).
+- One-class classification algorithms:
+  - Gaussian Mixture Model (GMM) [[7]](#references) </br>
+  - Parzen Window (PW) [[8]](#references) </br>
+  - Support Vector Data Description (SVDD) [[9]](#references) </br>
+  - Linear Programming (LP) [[10]](#references) </br>
+  - k-Nearest Neighbor Data Description (kNN<sub>local</sub>) [[11]](#references) </br>
+  - Auto-Encoder [[12]](#references) </br>
+  - Deep SVDD (DSVDD) [[13]](#references) </br>
 
 - Unsupervised outlier detection algorithms adapted to one-class classification
-  - k-Nearest Neighbors (kNN<sub>global</sub>), Local Outlier Factor (LOF), Local Correlation Integral (LOCI), Global-Local Outlier Scores from Hierarchies (GLOSH), Isolation Forest (iForest), Angle-Based Outlier Detection (ABOD), and Subspace Outlier Degree (SOD).
+  - k-Nearest Neighbors (kNN<sub>global</sub>) [[14]](#references) </br>
+  - Local Outlier Factor (LOF) [[15]](#references) </br>
+  - Local Correlation Integral (LOCI) [[16]](#references) </br>
+  - Global-Local Outlier Scores from Hierarchies (GLOSH) [[17]](#references) </br>
+  - Isolation Forest (iForest) [[18]](#references) </br>
+  - Angle-Based Outlier Detection (ABOD) [[19]](#references) </br>
+  - Subspace Outlier Degree (SOD) [[20]](#references) </br>
+
 
 #### Model Selection
 
@@ -79,4 +94,18 @@ In order to partition data into training and testing, we can use the command [ge
 [4] D. Dua, C. Graff: UCI Machine Learning Repository. University of California, 2019. <br>
 [5] K. Y. Yeung, C. Fraley, A. Murua, A. E. Raftery, W. L. Ruzzo: Model-Based Clustering and Data Transformations for Gene Expression Data. Bioinformatics,  2001. <br>
 [6] K. Y. Yeung, M. Medvedovic, R. E. Bumgarner: Clustering Gene-Expression Data with Repeated Measurements. Genome Biology, 2003. <br>
+[7] C. M. Bishop: Pattern Recognition and Machine Learning. Springer, 2006. <br>
+[8] E. Parzen: On Estimation of a Probability Density Function and Mode. The Annals of Mathematical Statistics, 1962. <br>
+[9] D. M. J. Tax, R. P. W. Duin: Support Vector Data Description. Machine Learning, 2004. <br>
+[10] E. Pekalska, D. M. J. Tax, R. P. W. Duin: One-Class LP Classifiers for Dissimilarity Representations. NIPS, 2002. <br>
+[11] D. de Ridder, D. M. J. Tax, R. P. W. Duin: An Experimental Comparison of One-Class Classification Methods. ASCI, 1998. <br>
+[12] N. Japkowicz, C. Myers, M. A. Gluck: A Novelty Detection Approach to Classification. IJCAI, 1995. <br>
+[13] L. Ruff, N. Görnitz, L. Deecke, S. A. Siddiqui, A. Binder, E. Müller, M. Kloft: Deep One-Class Classification. ICML, 2018. <br>
+[14] S. Ramaswamy, R. Rastogi, K. Shim: Efficient Algorithms for Mining Outliers from Large Data Sets. SIGMOD, 2000. <br>
+[15] M. M. Breunig, H. Kriegel, R. T. Ng, J. Sander: LOF: Identifying Density-Based Local Outliers. SIGMOD, 2000. <br>
+[16] S. Papadimitriou, H. Kitagawa, P. B. Gibbons, C. Faloutsos: LOCI: Fast Outlier Detection Using the Local Correlation Integral. ICDE, 2003. <br>
+[17] R. J. G. B. Campello, D. Moulavi, A. Zimek, J. Sander: Hierarchical Density Estimates for Data Clustering, Visualization, and Outlier Detection. TKDD, 2015. <br>
+[18] F. T. Liu, K. M. Ting, Z. Zhou: Isolation-Based Anomaly Detection. TKDD, 2012. <br>
+[19] H. Kriegel, M. Schubert, A. Zimek: Angle-Based Outlier Detection in High-Dimensional Data. SIGKDD, 2008. <br>
+[20] H. Kriegel, P. Kröger, E. Schubert, A. Zimek: Outlier Detection in Axis-Parallel Subspaces of High Dimensional Data. PAKDD, 2009. <br>
 

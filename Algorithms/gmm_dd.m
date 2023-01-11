@@ -30,7 +30,7 @@ function W = gmm_dd(a, fracrej, n)
 	    W.n = n;
 
 	    % Fit a Gaussian mixture distribution to data
-	    W.w = my_fitgmdist(a, n, 'Options', statset('Display','off','MaxIter',1000,'TolFun',1e-6), 'RegularizationValue', 0.01);
+	    W.w = fitgmdist(a, n, 'Options', statset('Display','off','MaxIter',1000,'TolFun',1e-6), 'RegularizationValue', 0.01);
 
 	    % computes outlier scores for training set
 	    if(W.n > 1)

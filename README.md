@@ -64,13 +64,103 @@ In order to partition data into training and testing, we can use the command [ge
 
 #### Algorithms
 - One-class classification algorithms:
-  - Gaussian Mixture Model (GMM) [[7]](#references) </br>
+  - Gaussian Mixture Model ([GMM](/Algorithms/gmm_dd.m)) [[7]](#references) </br>
+We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+    - Training </br>
+    ```w = gmm_dd(train, 0, 1);``` </br>
+    - Testing </br>
+    ```wx = test*w;``` </br>
+    ```dd_auc(dd_roc(wx))``` </br>
+    ```dd_mcc(wx)``` </br>
+    ```dd_precatn(wx)``` </br>
+    - Plot </br>
+    ```scatterd(oc_data, 'legend');``` </br>
+    ```plotd(w)``` </br>
+<p align="center"><img src="/Figures/gmm.png" width="40%" height="40%"></p>
+
   - Parzen Window (PW) [[8]](#references) </br>
+We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+      - Training </br>
+    ```w = gmm_dd(train, 0, 1);``` </br>
+    - Testing </br>
+    ```wx = test*w;``` </br>
+    ```dd_auc(dd_roc(wx))``` </br>
+    ```dd_mcc(wx)``` </br>
+    ```dd_precatn(wx)``` </br>
+    - Plot </br>
+    ```scatterd(oc_data, 'legend');``` </br>
+    ```plotd(w)``` </br>
+<p align="center"><img src="/Figures/gmm.png" width="40%" height="40%"></p>
+
   - Support Vector Data Description (SVDD) [[9]](#references) </br>
+We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+      - Training </br>
+    ```w = gmm_dd(train, 0, 1);``` </br>
+    - Testing </br>
+    ```wx = test*w;``` </br>
+    ```dd_auc(dd_roc(wx))``` </br>
+    ```dd_mcc(wx)``` </br>
+    ```dd_precatn(wx)``` </br>
+    - Plot </br>
+    ```scatterd(oc_data, 'legend');``` </br>
+    ```plotd(w)``` </br>
+<p align="center"><img src="/Figures/gmm.png" width="40%" height="40%"></p>
+
   - Linear Programming (LP) [[10]](#references) </br>
+We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+      - Training </br>
+    ```w = gmm_dd(train, 0, 1);``` </br>
+    - Testing </br>
+    ```wx = test*w;``` </br>
+    ```dd_auc(dd_roc(wx))``` </br>
+    ```dd_mcc(wx)``` </br>
+    ```dd_precatn(wx)``` </br>
+    - Plot </br>
+    ```scatterd(oc_data, 'legend');``` </br>
+    ```plotd(w)``` </br>
+<p align="center"><img src="/Figures/gmm.png" width="40%" height="40%"></p>
+
   - k-Nearest Neighbor Data Description (kNN<sub>local</sub>) [[11]](#references) </br>
+We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+      - Training </br>
+    ```w = gmm_dd(train, 0, 1);``` </br>
+    - Testing </br>
+    ```wx = test*w;``` </br>
+    ```dd_auc(dd_roc(wx))``` </br>
+    ```dd_mcc(wx)``` </br>
+    ```dd_precatn(wx)``` </br>
+    - Plot </br>
+    ```scatterd(oc_data, 'legend');``` </br>
+    ```plotd(w)``` </br>
+<p align="center"><img src="/Figures/gmm.png" width="40%" height="40%"></p>
+
   - Auto-Encoder [[12]](#references) </br>
+We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+      - Training </br>
+    ```w = gmm_dd(train, 0, 1);``` </br>
+    - Testing </br>
+    ```wx = test*w;``` </br>
+    ```dd_auc(dd_roc(wx))``` </br>
+    ```dd_mcc(wx)``` </br>
+    ```dd_precatn(wx)``` </br>
+    - Plot </br>
+    ```scatterd(oc_data, 'legend');``` </br>
+    ```plotd(w)``` </br>
+<p align="center"><img src="/Figures/gmm.png" width="40%" height="40%"></p>
+
   - Deep SVDD (DSVDD) [[13]](#references) </br>
+We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+      - Training </br>
+    ```w = gmm_dd(train, 0, 1);``` </br>
+    - Testing </br>
+    ```wx = test*w;``` </br>
+    ```dd_auc(dd_roc(wx))``` </br>
+    ```dd_mcc(wx)``` </br>
+    ```dd_precatn(wx)``` </br>
+    - Plot </br>
+    ```scatterd(oc_data, 'legend');``` </br>
+    ```plotd(w)``` </br>
+<p align="center"><img src="/Figures/gmm.png" width="40%" height="40%"></p>
 
 - Unsupervised outlier detection algorithms adapted to one-class classification
   - k-Nearest Neighbors (kNN<sub>global</sub>) [[14]](#references) </br>
@@ -103,7 +193,7 @@ In order to partition data into training and testing, we can use the command [ge
 [13] L. Ruff, N. Görnitz, L. Deecke, S. A. Siddiqui, A. Binder, E. Müller, M. Kloft: Deep One-Class Classification. ICML, 2018. <br>
 [14] S. Ramaswamy, R. Rastogi, K. Shim: Efficient Algorithms for Mining Outliers from Large Data Sets. SIGMOD, 2000. <br>
 [15] M. M. Breunig, H. Kriegel, R. T. Ng, J. Sander: LOF: Identifying Density-Based Local Outliers. SIGMOD, 2000. <br>
-[16] S. Papadimitriou, H. Kitagawa, P. B. Gibbons, C. Faloutsos: LOCI: Fast Outlier Detection Using the Local Correlation Integral. ICDE, 2003. <br>
+[16] S. Papadimitriou, H. Kitagawa, P. B. Gibbons, C. Faloutsos: LOCI: Fast Outlier Detection using the Local Correlation Integral. ICDE, 2003. <br>
 [17] R. J. G. B. Campello, D. Moulavi, A. Zimek, J. Sander: Hierarchical Density Estimates for Data Clustering, Visualization, and Outlier Detection. TKDD, 2015. <br>
 [18] F. T. Liu, K. M. Ting, Z. Zhou: Isolation-Based Anomaly Detection. TKDD, 2012. <br>
 [19] H. Kriegel, M. Schubert, A. Zimek: Angle-Based Outlier Detection in High-Dimensional Data. SIGKDD, 2008. <br>

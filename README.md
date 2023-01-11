@@ -78,10 +78,10 @@ We used MATLAB's own implementation for GMM, we just encapsulated it to follow t
     ```plotd(w)``` </br>
 <p align="center"><img src="/Figures/gmm.png" width="40%" height="40%"></p>
 
-  - Parzen Window (PW) [[8]](#references) </br>
-We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+  - Parzen Window ([PW](http://homepage.tudelft.nl/n9d04/functions/parzen_dd.html)) [[8]](#references) </br>
+We used dd_tools implementation for PW.</br>
       - Training </br>
-    ```w = gmm_dd(train, 0, 1);``` </br>
+    ```w = parzen_dd(train, 0, 0.25);``` </br>
     - Testing </br>
     ```wx = test*w;``` </br>
     ```dd_auc(dd_roc(wx))``` </br>
@@ -90,10 +90,10 @@ We used MATLAB's own implementation for GMM, we just encapsulated it to follow t
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
     ```plotd(w)``` </br>
-<p align="center"><img src="/Figures/gmm.png" width="40%" height="40%"></p>
+<p align="center"><img src="/Figures/pw.png" width="40%" height="40%"></p>
 
-  - Support Vector Data Description (SVDD) [[9]](#references) </br>
-We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+  - Support Vector Data Description ([SVDD](/Algorithms/libsvdd.m)) [[9]](#references) </br>
+We used [LIBSVM](https://www.csie.ntu.edu.tw/~cjlin/libsvm/libsvm-3.3.zip) [[21]](#references) implementation in C++ for SVDD due to the computational burden. We encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
       - Training </br>
     ```w = gmm_dd(train, 0, 1);``` </br>
     - Testing </br>
@@ -198,4 +198,5 @@ We used MATLAB's own implementation for GMM, we just encapsulated it to follow t
 [18] F. T. Liu, K. M. Ting, Z. Zhou: Isolation-Based Anomaly Detection. TKDD, 2012. <br>
 [19] H. Kriegel, M. Schubert, A. Zimek: Angle-Based Outlier Detection in High-Dimensional Data. SIGKDD, 2008. <br>
 [20] H. Kriegel, P. Kröger, E. Schubert, A. Zimek: Outlier Detection in Axis-Parallel Subspaces of High Dimensional Data. PAKDD, 2009. <br>
+[21] C.-C. Chang, C.-J. Lin: LIBSVM: A Library for Support Vector Machines. TIST, 2011. <br>
 

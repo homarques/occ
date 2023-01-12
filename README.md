@@ -94,8 +94,13 @@ We used dd_tools implementation for PW.</br>
 
   - Support Vector Data Description ([SVDD](/Algorithms/libsvdd.m)) [[9]](#references) </br>
 We used [LIBSVM](https://www.csie.ntu.edu.tw/~cjlin/libsvm/libsvm-3.3.zip) [[21]](#references) implementation in C++ for SVDD due to the computational burden. We encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+As this is a C++ implementation, you must compile it before its first use. Make sure a supported compiler is installed on the machine.
+      - Compiling </br>
+      ```mex -setup;``` </br>
+      ```make``` </br>
+      For general troubleshooting, read the LIBSVM [README](/Algorithms/libsvm/matlab/README) file.
       - Training </br>
-    ```w = gmm_dd(train, 0, 1);``` </br>
+    ```w = libsvdd(train, 0, 1);``` </br>
     - Testing </br>
     ```wx = test*w;``` </br>
     ```dd_auc(dd_roc(wx))``` </br>

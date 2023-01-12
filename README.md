@@ -68,12 +68,7 @@ In order to partition data into training and testing, we can use the command [ge
   - Gaussian Mixture Model ([GMM](/Algorithms/gmm_dd.m)) [[7]](#references) </br>
 We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
     - Training </br>
-    ```w = gmm_dd(train, 0, 1);``` </br>
-    - Testing </br>
-    ```wx = test*w;``` </br>
-    ```dd_auc(dd_roc(wx))``` </br>
-    ```dd_mcc(wx)``` </br>
-    ```dd_precatn(wx)``` </br>
+    ```w = gmm_dd(target_class(train), 0, 1);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
     ```plotd(w)``` </br>
@@ -82,12 +77,7 @@ We used MATLAB's own implementation for GMM, we just encapsulated it to follow t
   - Parzen Window ([PW](http://homepage.tudelft.nl/n9d04/functions/parzen_dd.html)) [[8]](#references) </br>
 We used dd_tools implementation for PW.</br>
       - Training </br>
-    ```w = parzen_dd(train, 0, 0.25);``` </br>
-    - Testing </br>
-    ```wx = test*w;``` </br>
-    ```dd_auc(dd_roc(wx))``` </br>
-    ```dd_mcc(wx)``` </br>
-    ```dd_precatn(wx)``` </br>
+    ```w = parzen_dd(target_class(train), 0, 0.25);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
     ```plotd(w)``` </br>
@@ -101,12 +91,7 @@ As this is a C++ implementation, you must compile it before its first use. Make 
       ```make``` </br>
       For general troubleshooting, read the LIBSVM [README](/Algorithms/libsvm/matlab/README) file.
       - Training </br>
-    ```w = libsvdd(train, 0, 1);``` </br>
-    - Testing </br>
-    ```wx = test*w;``` </br>
-    ```dd_auc(dd_roc(wx))``` </br>
-    ```dd_mcc(wx)``` </br>
-    ```dd_precatn(wx)``` </br>
+    ```w = libsvdd(target_class(train), 0, 1);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
     ```plotd(w)``` </br>
@@ -116,11 +101,6 @@ As this is a C++ implementation, you must compile it before its first use. Make 
 We used dd_tools implementation for LP.</br>
       - Training </br>
     ```w = lpdd(target_class(train), 0, 0.25);``` </br>
-    - Testing </br>
-    ```wx = test*w;``` </br>
-    ```dd_auc(dd_roc(wx))``` </br>
-    ```dd_mcc(wx)``` </br>
-    ```dd_precatn(wx)``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
     ```plotc(w)``` </br>
@@ -129,12 +109,7 @@ We used dd_tools implementation for LP.</br>
   - k-Nearest Neighbor Data Description ([kNN<sub>local</sub>](/Algorithms/lknn.m)) [[11]](#references) </br>
 We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
       - Training </br>
-    ```w = gmm_dd(train, 0, 1);``` </br>
-    - Testing </br>
-    ```wx = test*w;``` </br>
-    ```dd_auc(dd_roc(wx))``` </br>
-    ```dd_mcc(wx)``` </br>
-    ```dd_precatn(wx)``` </br>
+    ```w = gmm_dd(target_class(train), 0, 1);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
     ```plotd(w)``` </br>
@@ -143,12 +118,7 @@ We used MATLAB's own implementation for GMM, we just encapsulated it to follow t
   - [Auto-Encoder](http://homepage.tudelft.nl/n9d04/functions/autoenc_dd.html) [[12]](#references) </br>
 We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
       - Training </br>
-    ```w = gmm_dd(train, 0, 1);``` </br>
-    - Testing </br>
-    ```wx = test*w;``` </br>
-    ```dd_auc(dd_roc(wx))``` </br>
-    ```dd_mcc(wx)``` </br>
-    ```dd_precatn(wx)``` </br>
+    ```w = gmm_dd(target_class(train), 0, 1);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
     ```plotd(w)``` </br>
@@ -157,12 +127,7 @@ We used MATLAB's own implementation for GMM, we just encapsulated it to follow t
   - Deep SVDD ([DSVDD]()) [[13]](#references) </br>
 We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
       - Training </br>
-    ```w = gmm_dd(train, 0, 1);``` </br>
-    - Testing </br>
-    ```wx = test*w;``` </br>
-    ```dd_auc(dd_roc(wx))``` </br>
-    ```dd_mcc(wx)``` </br>
-    ```dd_precatn(wx)``` </br>
+    ```w = gmm_dd(target_class(train), 0, 1);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
     ```plotd(w)``` </br>

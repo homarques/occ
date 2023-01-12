@@ -12,11 +12,13 @@ To appears in: DAMI (2023)
 #### Toolboxes
 - [dd_tools](https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/pattern-recognition-bioinformatics/pattern-recognition-bioinformatics/data-and-software/dd-tools) [[1]](#references)<br>
 - [PRTools5](http://prtools.tudelft.nl/Guide/37Pages/software.html) [[2]](#references)<br>
+- [GLPKmex](http://sourceforge.net/projects/glpkmex/)<br>
 
 ##### <a name="importing-toolboxes">Importing toolboxes</a>
-After downloading, you can add PRTools5 and dd_tools toolboxes to the MATLAB workspace using the command ```addpath```:
+After downloading, you can add PRTools5, dd_tools, and GLPKmex toolboxes to the MATLAB workspace using the command ```addpath```:
 ```addpath('path/to/prtools');``` </br>
 ```addpath('path/to/dd_tools');```
+```addpath('path/to/glpkmex');```
 
 #### Datasets
 - Synthetic datasets [[3]](#references)
@@ -93,7 +95,7 @@ We used dd_tools implementation for PW.</br>
 <p align="center"><img src="/Figures/pw.png" width="40%" height="40%"></p>
 
   - Support Vector Data Description ([SVDD](/Algorithms/libsvdd.m)) [[9]](#references) </br>
-We used [LIBSVM](https://www.csie.ntu.edu.tw/~cjlin/libsvm/libsvm-3.3.zip) [[21]](#references) implementation in C++ for SVDD due to the computational burden. We encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+We used [LIBSVM](https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/#libsvm_for_svdd_and_finding_the_smallest_sphere_containing_all_data)[[21]](#references) implementation in C++ for SVDD due to the computational burden. We encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
 As this is a C++ implementation, you must compile it before its first use. Make sure a supported compiler is installed on the machine.
       - Compiling </br>
       ```mex -setup;``` </br>
@@ -111,10 +113,10 @@ As this is a C++ implementation, you must compile it before its first use. Make 
     ```plotd(w)``` </br>
 <p align="center"><img src="/Figures/svdd.png" width="40%" height="40%"></p>
 
-  - Linear Programming (LP) [[10]](#references) </br>
-We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+  - Linear Programming ([LP]()) [[10]](#references) </br>
+We used dd_tools implementation for LP.</br>
       - Training </br>
-    ```w = gmm_dd(train, 0, 1);``` </br>
+    ```w = lpdd(target_class(train), 0, 0.25);``` </br>
     - Testing </br>
     ```wx = test*w;``` </br>
     ```dd_auc(dd_roc(wx))``` </br>
@@ -122,8 +124,8 @@ We used MATLAB's own implementation for GMM, we just encapsulated it to follow t
     ```dd_precatn(wx)``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
-    ```plotd(w)``` </br>
-<p align="center"><img src="/Figures/gmm.png" width="40%" height="40%"></p>
+    ```plotc(w)``` </br>
+<p align="center"><img src="/Figures/lpdd.png" width="40%" height="40%"></p>
 
   - k-Nearest Neighbor Data Description (kNN<sub>local</sub>) [[11]](#references) </br>
 We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>

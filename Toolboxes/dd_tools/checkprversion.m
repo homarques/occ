@@ -30,12 +30,5 @@ end
 if ~exist('prversion')
 	error([clr_on '  !! Cannot find Prtools. Please put Prtools in your path.' clr_off]);
 end
-% And do the check:
-if prversion<minversion
-	str = sprintf('This version of Dd_tools requires >= Prtools %3.1f!',...
-	       minversion);
-	error([clr_on newln '---- ' str ' ----' clr_off]);
-	out = 0;
-end
 
 return

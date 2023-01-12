@@ -109,7 +109,7 @@ As this is a C++ implementation, you must compile it before its first use. Make 
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
     ```plotd(w)``` </br>
-<p align="center"><img src="/Figures/gmm.png" width="40%" height="40%"></p>
+<p align="center"><img src="/Figures/svdd.png" width="40%" height="40%"></p>
 
   - Linear Programming (LP) [[10]](#references) </br>
 We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>

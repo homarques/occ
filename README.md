@@ -8,19 +8,18 @@ On the Evaluation of Outlier Detection and One-Class Classification:
 A Comparative Study of Algorithms, Model Selection, and Ensembles. 
 To appears in: DAMI (2023)
 ```
-### Third-party codes & data
-#### Toolboxes
+### Toolboxes
 - [dd_tools](https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/pattern-recognition-bioinformatics/pattern-recognition-bioinformatics/data-and-software/dd-tools) [[1]](#references)<br>
 - [PRTools5](http://prtools.tudelft.nl/Guide/37Pages/software.html) [[2]](#references)<br>
 - [GLPKmex](http://sourceforge.net/projects/glpkmex/)<br>
 
-##### <a name="importing-toolboxes">Importing toolboxes</a>
+#### <a name="importing-toolboxes">Importing toolboxes</a>
 After downloading, you can add PRTools5, dd_tools, and GLPKmex toolboxes to the MATLAB workspace using the command ```addpath```:
 ```addpath('path/to/prtools');``` </br>
 ```addpath('path/to/dd_tools');```
 ```addpath('path/to/glpkmex');```
 
-#### Datasets
+### Datasets
 - Synthetic datasets [[3]](#references)
   - [synth-batch1](http://www.dbs.ifi.lmu.de/~zimek/publications/KDD2013/synthetic.tar.gz)<br>
 
@@ -31,7 +30,7 @@ After downloading, you can add PRTools5, dd_tools, and GLPKmex toolboxes to the 
 - Other datasets
   - [CellCycle-237](http://faculty.washington.edu/kayee/cluster/normcho_237_4class.txt) [[5]](#references) and [YeastGalactose](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC156590/bin/gb-2003-4-5-r34-s8.txt) [[6]](#references)
 
-##### Manipulating datasets
+#### Manipulating datasets
 We provide above the original source of all datasets used in our experiments.<br>
 However, we also make them available ready-to-use in MATLAB [here](Datasets).</br>
 
@@ -64,7 +63,7 @@ Setting classes 1 and 2 as inlier class:</br>
 In order to partition data into training and testing, we can use the command [gendat](http://www.37steps.com/prhtml/prtools/gendat.html). In the example below, we partition the dataset to use 80% for training and hold 20% to test:</br>
 ```[train, test] = gendat(oc_data, 0.8);```</br>
 
-#### Algorithms
+### Algorithms
 - One-class classification algorithms:
   - Gaussian Mixture Model ([GMM](/Algorithms/gmm_dd.m)) [[7]](#references) </br>
 We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
@@ -113,7 +112,7 @@ As this is a C++ implementation, you must compile it before its first use. Make 
     ```plotd(w)``` </br>
 <p align="center"><img src="/Figures/svdd.png" width="40%" height="40%"></p>
 
-  - Linear Programming ([LP]()) [[10]](#references) </br>
+  - Linear Programming ([LP](http://homepage.tudelft.nl/n9d04/functions/lpdd.html)) [[10]](#references) </br>
 We used dd_tools implementation for LP.</br>
       - Training </br>
     ```w = lpdd(target_class(train), 0, 0.25);``` </br>
@@ -127,7 +126,7 @@ We used dd_tools implementation for LP.</br>
     ```plotc(w)``` </br>
 <p align="center"><img src="/Figures/lpdd.png" width="40%" height="40%"></p>
 
-  - k-Nearest Neighbor Data Description (kNN<sub>local</sub>) [[11]](#references) </br>
+  - k-Nearest Neighbor Data Description ([kNN<sub>local</sub>](/Algorithms/lknn.m)) [[11]](#references) </br>
 We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
       - Training </br>
     ```w = gmm_dd(train, 0, 1);``` </br>
@@ -141,7 +140,7 @@ We used MATLAB's own implementation for GMM, we just encapsulated it to follow t
     ```plotd(w)``` </br>
 <p align="center"><img src="/Figures/gmm.png" width="40%" height="40%"></p>
 
-  - Auto-Encoder [[12]](#references) </br>
+  - [Auto-Encoder](http://homepage.tudelft.nl/n9d04/functions/autoenc_dd.html) [[12]](#references) </br>
 We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
       - Training </br>
     ```w = gmm_dd(train, 0, 1);``` </br>
@@ -155,7 +154,7 @@ We used MATLAB's own implementation for GMM, we just encapsulated it to follow t
     ```plotd(w)``` </br>
 <p align="center"><img src="/Figures/gmm.png" width="40%" height="40%"></p>
 
-  - Deep SVDD (DSVDD) [[13]](#references) </br>
+  - Deep SVDD ([DSVDD]()) [[13]](#references) </br>
 We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
       - Training </br>
     ```w = gmm_dd(train, 0, 1);``` </br>
@@ -179,9 +178,9 @@ We used MATLAB's own implementation for GMM, we just encapsulated it to follow t
   - Subspace Outlier Degree (SOD) [[20]](#references) </br>
 
 
-#### Model Selection
+### Model Selection
 
-#### Ensembles
+### Ensembles
 
 
 ## <a name="references">References</a>

@@ -131,7 +131,7 @@ The list of packages required, you can find [here](/Algorithms/Deep-SAD-PyTorch/
 Also, make sure your python environment is setup up on MATLAB. If not, [check this out](https://se.mathworks.com/help/matlab/ref/pyenv.html).</br>
 
     - Add python source to MATLAB env </br>
-    ```pathToSAD = fileparts(path/to/Deep-SAD-PyTorch/src/main.py)``` </br>
+    ```pathToSAD = fileparts('path/to/Deep-SAD-PyTorch/src/main.py');``` </br>
     ```insert(py.sys.path, int32(0), pathToSAD)``` </br>
      - Training </br>
     ```w = dsvdd(target_class(train), 0, 8);``` </br>

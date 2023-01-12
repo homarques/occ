@@ -1,8 +1,6 @@
 %SVDD Support Vector Data Description
 % 
-%       W = SVDD(A,FRACREJ,SIGMA)
-%       W = A*SVDD([],FRACREJ,SIGMA)
-%       W = A*SVDD(FRACREJ,SIGMA)
+%       W = LIBSVDD(A,FRACREJ,SIGMA)
 %
 % INPUT
 %   A         One-class dataset
@@ -30,7 +28,7 @@
 %}
 %
   
-function W = svdd(varargin)
+function W = libsvdd(varargin)
 
 argin = shiftargin(varargin,'scalar');
 argin = setdefaults(argin,[],0.1,5);

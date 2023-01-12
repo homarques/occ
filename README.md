@@ -66,25 +66,25 @@ In order to partition data into training and testing, we can use the command [ge
 ### Algorithms
 - One-class classification algorithms:
   - Gaussian Mixture Model ([GMM](/Algorithms/gmm_dd.m)) [[7]](#references) </br>
-We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+We use MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
     - Training </br>
     ```w = gmm_dd(target_class(train), 0, 1);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
-    ```plotd(w)``` </br>
+    ```plotc(w)``` </br>
 <p align="center"><img src="/Figures/gmm.png" width="40%" height="40%"></p>
 
   - Parzen Window ([PW](http://homepage.tudelft.nl/n9d04/functions/parzen_dd.html)) [[8]](#references) </br>
-We used dd_tools implementation for PW.</br>
+We use dd_tools implementation for PW.</br>
       - Training </br>
     ```w = parzen_dd(target_class(train), 0, 0.25);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
-    ```plotd(w)``` </br>
+    ```plotc(w)``` </br>
 <p align="center"><img src="/Figures/pw.png" width="40%" height="40%"></p>
 
   - Support Vector Data Description ([SVDD](/Algorithms/libsvdd.m)) [[9]](#references) </br>
-We used [LIBSVM](https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/#libsvm_for_svdd_and_finding_the_smallest_sphere_containing_all_data)[[21]](#references) implementation in C++ for SVDD due to the computational burden. We encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+We use [LIBSVM](https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/#libsvm_for_svdd_and_finding_the_smallest_sphere_containing_all_data)[[21]](#references) implementation in C++ for SVDD due to the computational burden. We encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
 As this is a C++ implementation, you must compile it before its first use. Make sure a supported compiler is installed on the machine.
       - Compiling </br>
       ```mex -setup;``` </br>
@@ -94,11 +94,11 @@ As this is a C++ implementation, you must compile it before its first use. Make 
     ```w = libsvdd(target_class(train), 0, 1);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
-    ```plotd(w)``` </br>
+    ```plotc(w)``` </br>
 <p align="center"><img src="/Figures/svdd.png" width="40%" height="40%"></p>
 
   - Linear Programming ([LP](http://homepage.tudelft.nl/n9d04/functions/lpdd.html)) [[10]](#references) </br>
-We used dd_tools implementation for LP.</br>
+We use dd_tools implementation for LP.</br>
       - Training </br>
     ```w = lpdd(target_class(train), 0, 0.25);``` </br>
     - Plot </br>
@@ -106,31 +106,32 @@ We used dd_tools implementation for LP.</br>
     ```plotc(w)``` </br>
 <p align="center"><img src="/Figures/lpdd.png" width="40%" height="40%"></p>
 
-  - k-Nearest Neighbor Data Description ([kNN<sub>local</sub>](/Algorithms/lknn.m)) [[11]](#references) </br>
-We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+  - k-Nearest Neighbor Data Description ([kNN<sub>local</sub>](/Algorithms/lknndd.m)) [[11]](#references) </br>
+We use our own implementation for [kNN<sub>local</sub>], following the same pattern used by the dd_tools classifiers.</br>
       - Training </br>
-    ```w = gmm_dd(target_class(train), 0, 1);``` </br>
+    ```w = lknndd(target_class(train), 0, 10);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
-    ```plotd(w)``` </br>
-<p align="center"><img src="/Figures/gmm.png" width="40%" height="40%"></p>
+    ```plotc(w)``` </br>
+<p align="center"><img src="/Figures/lknn.png" width="40%" height="40%"></p>
 
   - [Auto-Encoder](http://homepage.tudelft.nl/n9d04/functions/autoenc_dd.html) [[12]](#references) </br>
-We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+We use dd_tools implementation for Auto-Encoder.</br>
       - Training </br>
-    ```w = gmm_dd(target_class(train), 0, 1);``` </br>
+    ```w = autoenc_dd(target_class(train), 0, 10);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
-    ```plotd(w)``` </br>
-<p align="center"><img src="/Figures/gmm.png" width="40%" height="40%"></p>
+    ```plotc(w)``` </br>
+<p align="center"><img src="/Figures/autoenc.png" width="40%" height="40%"></p>
 
-  - Deep SVDD ([DSVDD]()) [[13]](#references) </br>
-We used MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+  - Deep SVDD ([DSVDD](https://github.com/lukasruff/Deep-SAD-PyTorch)) [[13]](#references) </br>
+For DSVDD, we use authors' implementation in python. We also encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+
       - Training </br>
     ```w = gmm_dd(target_class(train), 0, 1);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
-    ```plotd(w)``` </br>
+    ```plotc(w)``` </br>
 <p align="center"><img src="/Figures/gmm.png" width="40%" height="40%"></p>
 
 - Unsupervised outlier detection algorithms adapted to one-class classification

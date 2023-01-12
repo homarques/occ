@@ -1,1 +1,0 @@
-%UMINUS Mapping overload

@@ -1,1 +1,0 @@
-%EQ Mapping overload

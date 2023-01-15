@@ -1,4 +1,4 @@
-# On the evaluation of outlier detection and one-class classification
+# On the Evaluation of Outlier Detection and One-Class Classification
 
 Repository of the paper:
 
@@ -14,10 +14,14 @@ To appears in: DAMI (2023)
 - [GLPKmex](http://sourceforge.net/projects/glpkmex/)</br>
 
 #### <a name="importing-toolboxes">Importing toolboxes</a>
-After downloading, you can add PRTools5, dd_tools, and GLPKmex toolboxes to the MATLAB workspace using the command ```addpath```:
+After downloading, you can add PRTools5, dd_tools, and GLPKmex<sup>*</sup> toolboxes to the MATLAB workspace using the command ```addpath```: </br>
 ```addpath('path/to/prtools');``` </br>
 ```addpath('path/to/dd_tools');```</br>
-```addpath('path/to/glpkmex');```
+```addpath('path/to/glpkmex');```</br>
+
+<sup>*</sup>GLPKmex is only needed for the [LP](#lp) classifier.
+
+------
 
 ### Datasets
 - Synthetic datasets [[3]](#references)
@@ -32,7 +36,7 @@ After downloading, you can add PRTools5, dd_tools, and GLPKmex toolboxes to the 
 
 #### Manipulating datasets
 We provide above the original source of all datasets used in our experiments.</br>
-However, we also make them available ready-to-use in MATLAB [here](Datasets).</br>
+For convenience, we also make them available ready-to-use in MATLAB [here](Datasets).</br>
 
 - Reading datasets</br>
 After downloading, you can load the datasets to the MATLAB workspace using the command ```load```, just make sure you already [imported](#importing-toolboxes) PRTools5 to your workspace before: </br>
@@ -97,7 +101,7 @@ As this is a C++ implementation, you must compile it before its first use. Make 
     ```plotc(w)``` </br>
 <p align="center"><img src="/Figures/svdd.png" width="40%" height="40%"></p>
 
-  - Linear Programming ([LP](http://homepage.tudelft.nl/n9d04/functions/lpdd.html)) [[10]](#references) </br>
+  - <a name="lp"> Linear Programming ([LP](http://homepage.tudelft.nl/n9d04/functions/lpdd.html)) [[10]](#references) </a> </br>
 We use dd_tools implementation for LP.</br>
       - Training </br>
     ```w = lpdd(target_class(train), 0, 0.25);``` </br>
@@ -149,6 +153,7 @@ Also, make sure your python environment is setup up on MATLAB. If not, [check th
   - Angle-Based Outlier Detection (ABOD) [[19]](#references) </br>
   - Subspace Outlier Degree (SOD) [[20]](#references) </br>
 
+### Measures
 
 ### Model Selection
 

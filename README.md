@@ -310,6 +310,29 @@ We use the following performance measures in our experiments: </br>
 
 ### Ensembles
   - Reciprocal Rank Fusion ([RRF](/Ensembles/RRF_dd.m)) [[29]](#references)
+	```matlab
+	ranks = zeros(size(test,1),3);
+	
+	%training GMM
+	w = gmm_dd(target_class(train), 0, 1);
+	wx = test*w;
+	ranks(:,1) = +wx(:,1);
+
+	%training KNN
+	w = knndd(target_class(train), 0, 1);
+	wx = test*w;
+	ranks(:,2) = +wx(:,1);
+	
+	%training LOF
+	w = lof(target_class(train), 0, 10);
+	wx = test*w;
+	ranks(:,3) = +wx(:,1);
+
+	% Combining rankings
+	ranks = tiedrank(ranks);
+	w = RRF_dd(train, 0, ranks);
+	dd_auc(dd_roc(test*w));
+	```
 
 ## <a name="references">References</a>
 [1] D. M. J. Tax: DDtools, the Data Description Toolbox for Matlab. Version 2.1.3, Delft University of Technology, 2018<br>

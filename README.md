@@ -239,16 +239,16 @@ We use the following performance measures in our experiments: </br>
   ```[sds_targets, sds_outliers] = sds(target_class(train));```</br>
   
     - Classifier error: </br>
-     ```matlab
-	  % Error on target class
-	  err_t = dd_error(sds_targets*w);
-	  
-	  % Error on outlier class
-	  err_o = dd_error(sds_outliers*w);
-	  
-	  % classifier error
-	  err_sds = err_t(1) + err_o(2);
-     ```
+	     ```matlab
+		  % Error on target class
+		  err_t = dd_error(sds_targets*w);
+
+		  % Error on outlier class
+		  err_o = dd_error(sds_outliers*w);
+
+		  % classifier error
+		  err_sds = err_t(1) + err_o(2);
+	     ```
   
   - [Perturbation](/MS/perturbation.m) [[27]](#references) (unsupervised) </br>
     - Generation of data: </br>
@@ -256,58 +256,58 @@ We use the following performance measures in our experiments: </br>
   ```pert_targets = perturbation(target_class(train), nrinst, 0.5);```</br>
   
     - Classifier error: </br>
-    ```matlab
-    % Error on target class (cross-validation without outliers)
-    nrfolds = 10;
-    err_t = zeros(nrfolds, 1);
-    I = nrfolds;
-    for j = 1:nrfolds
-        %x - training set, z - test set
-        [x,z,I] = dd_crossval(target_class(train), I);
-        %training
-        w = gmm_dd(x, 0, 1);
-        %test
-        err_xval = dd_error(z, w);
-        err_t(j) = err_xval(1);
-    end
-    
-    % Error on outlier class (perturbed data)
-    err_o = zeros(nrinst, 1);
-    for j = 1:nrinst
-      err_pert = dd_error(pert_targets{j}*w);
-      err_o(j) = err_pert(2);
-    end
-    
-    % classifier error
-    err_pert = mean(err_t) + mean(err_o);
-    ```
+	    ```matlab
+	    % Error on target class (cross-validation without outliers)
+	    nrfolds = 10;
+	    err_t = zeros(nrfolds, 1);
+	    I = nrfolds;
+	    for j = 1:nrfolds
+		%x - training set, z - test set
+		[x,z,I] = dd_crossval(target_class(train), I);
+		%training
+		w = gmm_dd(x, 0, 1);
+		%test
+		err_xval = dd_error(z, w);
+		err_t(j) = err_xval(1);
+	    end
+
+	    % Error on outlier class (perturbed data)
+	    err_o = zeros(nrinst, 1);
+	    for j = 1:nrinst
+	      err_pert = dd_error(pert_targets{j}*w);
+	      err_o(j) = err_pert(2);
+	    end
+
+	    % classifier error
+	    err_pert = mean(err_t) + mean(err_o);
+	    ```
 
   - [Uniform Objects](https://homepage.tudelft.nl/n9d04/functions/gendatout.html) [[28]](#references) (unsupervised) </br>
     - Generation of data: </br>
   ```unif_targets = gendatout(target_class(train), 100000);```</br>
-   
-   - Classifier error: </br>
-  ```matlab
-    % Error on target class (cross-validation without outliers)
-    nrfolds = 10;
-    err_t = zeros(nrfolds, 1);
-    I = nrfolds;
-    for j = 1:nrfolds
-        %x - training set, z - test set
-        [x,z,I] = dd_crossval(target_class(train), I);
-        %training
-        w = gmm_dd(x, 0, 1);
-        %test
-        err_xval = dd_error(z, w);
-        err_t(j) = err_xval(1);
-    end
     
-    % Error on outlier class (uniform data)
-    err_o = dd_error(unif_targets*w);
- 
-    % classifier error
-    err_unif = mean(err_t) + err_o(2);
-   ```
+    - Classifier error: </br>
+	  ```matlab
+	    % Error on target class (cross-validation without outliers)
+	    nrfolds = 10;
+	    err_t = zeros(nrfolds, 1);
+	    I = nrfolds;
+	    for j = 1:nrfolds
+		%x - training set, z - test set
+		[x,z,I] = dd_crossval(target_class(train), I);
+		%training
+		w = gmm_dd(x, 0, 1);
+		%test
+		err_xval = dd_error(z, w);
+		err_t(j) = err_xval(1);
+	    end
+
+	    % Error on outlier class (uniform data)
+	    err_o = dd_error(unif_targets*w);
+
+	    % classifier error
+	    err_unif = mean(err_t) + err_o(2);
+	   ```
 
 ### Ensembles
   - Reciprocal Rank Fusion ([RRF](/Ensembles/RRF_dd.m)) [[29]](#references)

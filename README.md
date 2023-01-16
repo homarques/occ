@@ -239,9 +239,16 @@ We use the following performance measures in our experiments: </br>
   ```[sds_targets, sds_outliers] = sds(target_class(train));```</br>
   
     - Classifier error: </br>
-  ```err_t = dd_error(sds_targets*w);```</br>
-  ```err_o = dd_error(sds_outliers*w);```</br>
-  ```err_sds = err_t(1) + err_o(2);```</br>
+     ```matlab
+     	  % Error on target class
+	  err_t = dd_error(sds_targets*w);
+	  
+	  % Error on outlier class
+	  err_o = dd_error(sds_outliers*w);
+	  
+	  % classifier error
+	  err_sds = err_t(1) + err_o(2);
+     ```
   
   - [Perturbation](/MS/perturbation.m) [[27]](#references) (unsupervised) </br>
     - Generation of data: </br>

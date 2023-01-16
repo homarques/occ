@@ -123,8 +123,8 @@ We use dd_tools implementation for Auto-Encoder.</br>
     ```plotc(w)``` </br>
 <p align="center"><img src="/Figures/autoenc.png" width="40%" height="40%"></p>
 
-  - Deep SVDD ([DSVDD](https://github.com/lukasruff/Deep-SAD-PyTorch)) [[13]](#references) </br>
-For DSVDD, we use the authors' implementation in Python. We also encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+  - Deep SVDD ([DSVDD](/Algorithms/dsvdd.m)) [[13]](#references) </br>
+For DSVDD, we use the [authors' implementation](https://github.com/lukasruff/Deep-SAD-PyTorch) in Python, we made some small adjustments to communicate to MATLAB and encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
 Since the implementation is in Python, make sure you have a compatible version of Python and all the required packages installed.</br>
 The list of packages required, you can find [here](/Algorithms/Deep-SAD-PyTorch/requirements.txt).</br>
 Also, make sure your Python environment is setup up on MATLAB. If not, [check this out](https://se.mathworks.com/help/matlab/ref/pyenv.html).</br>

@@ -218,13 +218,19 @@ For SOD, we use our own implementation based on [ELKI](https://elki-project.gith
 
 ### Model Selection
   - [Cross-validation](http://homepage.tudelft.nl/n9d04/functions/dd_crossval.html) [[25]](#references) </br>
+  ```[x, z, I] = dd_crossval(train, 10);```</br>
+  ```w = gmm_dd(target_class(x), 0, 1);``` </br>
+  ```dd_auc(dd_roc(z*w));```</br>
   - Self-adaptive Data Shifting ([SDS](/MS/sds.m)) [[26]](#references) </br>
+  ```[sds_targets, sds_outliers] = sds(target_class(train));```</br>
   - [Perturbation](/MS/perturbation.m) [[27]](#references) </br>
+  ```pert_targets = perturbation(target_class(train), 20, 0.5);```</br>
   - [Uniform Objects](https://homepage.tudelft.nl/n9d04/functions/gendatout.html) [[28]](#references) </br>
+  ```unif_targets = gendatout(target_class(train), 100000);```</br>
 
 
 ### Ensembles
-
+  - Reciprocal Rank Fusion ([RRF](/Ensembles/RRF_dd.m)) [[29]](#references)
 
 ## <a name="references">References</a>
 [1] D. M. J. Tax: DDtools, the Data Description Toolbox for Matlab. Version 2.1.3, Delft University of Technology, 2018<br>
@@ -255,3 +261,4 @@ For SOD, we use our own implementation based on [ELKI](https://elki-project.gith
 [26] S. Wang, Q. Liu, E. Zhu, F. Porikli, J. Yin: Hyperparameter Selection of One-Class Support Vector Machine by Self-Adaptive Data Shifting. Pattern Recognition, 2018. <br>
 [27] H. O. Marques: Evaluation and Model Selection for Unsupervised Outlier Detection and One-Class Classification. PhD thesis, University of São Paulo, 2011. <br>
 [28] D. M. J. Tax, R. P. W. Duin: Uniform Object Generation for Optimizing One-class Classifiers. JMLR, 2001. <br>
+[29] G. V. Cormack, C. L. A. Clarke, S Büttcher: Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods. SIGIR, 2009. <br>

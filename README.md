@@ -17,9 +17,9 @@ To appears in: DAMI (2023)
 After downloading, you can add PRTools5, dd_tools, and GLPKmex<sup>*</sup> toolboxes to the MATLAB workspace using the command ```addpath```: </br>
 ```addpath('path/to/prtools');``` </br>
 ```addpath('path/to/dd_tools');```</br>
-```addpath('path/to/glpkmex');```</br>
+```addpath('path/to/GLPKmex');```</br>
 
-<sup>*</sup>GLPKmex is only needed for the [LP](#lp) classifier.
+<sup>*</sup>GLPKmex is only needed to use the [LP](#lp) classifier.
 
 ------
 
@@ -50,18 +50,13 @@ As this dataset is 4-dimensional, first, we will project it in a 2D space using 
 <p align="center"><img src="/Figures/iris2d.png" width="40%" height="40%"></p>
 
 - Creating one-class datasets</br>
-As this is a multi-class dataset, we have to transform it into a one-class dataset. It is done by using the dd_tools command ```oc_set```.<br>
+As this is a multi-class dataset, we have to transform it into a one-class dataset. It is done by using the dd_tools command [oc_set](https://homepage.tudelft.nl/n9d04/functions/oc_set.html).<br>
 You only need to set which class(es) will be the inlier (aka target) class.</br>
 
 Setting class 1 as inlier class:</br>
 ```oc_data = oc_set(iris2d, [1]);```</br>
 ```scatterd(oc_data, 'legend');```</br>
 <p align="center"><img src="/Figures/oc_iris1.png" width="40%" height="40%"></p>
-
-Setting classes 1 and 2 as inlier class:</br>
-```oc_data = oc_set(iris2d, [1 2]);``` </br>
-```scatterd(oc_data, 'legend');```</br>
-<p align="center"><img src="/Figures/oc_iris12.png" width="40%" height="40%"></p>
 
 - Holdout</br>
 In order to partition data into training and testing, we can use the command [gendat](http://www.37steps.com/prhtml/prtools/gendat.html). In the example below, we partition the dataset to use 80% for training and hold 20% to test:</br>
@@ -89,7 +84,7 @@ We use dd_tools implementation for PW.</br>
 
   - Support Vector Data Description ([SVDD](/Algorithms/libsvdd.m)) [[9]](#references) </br>
 We use [LIBSVM](https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/#libsvm_for_svdd_and_finding_the_smallest_sphere_containing_all_data)[[21]](#references) implementation in C++ for SVDD due to the computational burden. We encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
-As this is a C++ implementation, you must compile it before its first use. Make sure a supported compiler is installed on the machine.
+As this is a C++ implementation, you must compile it before its first use. Make sure a [supported compiler](https://se.mathworks.com/support/requirements/supported-compilers.html) is installed on the machine.
       - Compiling </br>
       ```mex -setup;``` </br>
       ```make``` </br>
@@ -113,7 +108,7 @@ We use dd_tools implementation for LP.</br>
   - k-Nearest Neighbor Data Description ([kNN<sub>local</sub>](/Algorithms/lknndd.m)) [[11]](#references) </br>
 We use our own implementation for kNN<sub>local</sub>, following the same pattern used by the dd_tools classifiers.</br>
       - Training </br>
-    ```w = lknndd(target_class(train), 0, 10);``` </br>
+    ```w = lknndd(target_class(train), 0, 1);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
     ```plotc(w)``` </br>
@@ -129,8 +124,8 @@ We use dd_tools implementation for Auto-Encoder.</br>
 <p align="center"><img src="/Figures/autoenc.png" width="40%" height="40%"></p>
 
   - Deep SVDD ([DSVDD](https://github.com/lukasruff/Deep-SAD-PyTorch)) [[13]](#references) </br>
-For DSVDD, we use authors' implementation in Python. We also encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
-Since the implementation is in python, make sure you have a compatible version of Python and all the required packages installed.</br>
+For DSVDD, we use the authors' implementation in Python. We also encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+Since the implementation is in Python, make sure you have a compatible version of Python and all the required packages installed.</br>
 The list of packages required, you can find [here](/Algorithms/Deep-SAD-PyTorch/requirements.txt).</br>
 Also, make sure your Python environment is setup up on MATLAB. If not, [check this out](https://se.mathworks.com/help/matlab/ref/pyenv.html).</br>
 
@@ -148,7 +143,7 @@ Also, make sure your Python environment is setup up on MATLAB. If not, [check th
   - k-Nearest Neighbors ([kNN<sub>global</sub>](https://homepage.tudelft.nl/n9d04/functions/knndd.html)) [[14]](#references) </br>
 We use dd_tools implementation for kNN<sub>global</sub>.</br>
     - Training </br>
-    ```w = knndd(target_class(train), 0, 10);``` </br>
+    ```w = knndd(target_class(train), 0, 1);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
     ```plotc(w)``` </br>
@@ -157,7 +152,7 @@ We use dd_tools implementation for kNN<sub>global</sub>.</br>
   - Local Outlier Factor ([LOF](/Algorithms/lof.m)) [[15]](#references) </br>
 We use our own implementation for LOF in order to reuse the pre-computed quantities related to instances in the training data. The implementation follows the same pattern used by the dd_tools classifiers.
     - Training </br>
-    ```w = lof(target_class(train), 0, 10);``` </br>
+    ```w = lof(target_class(train), 0, 20);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
     ```plotc(w)``` </br>

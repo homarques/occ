@@ -1,14 +1,8 @@
-%RANDOM_DD Random one-class classifier
+%IFOREST_DD Isolation Forest classifier
 % 
-%       W = RANDOM_DD(A,FRACREJ)
+%       W = IFOREST_DD(A,FRACREJ, NUMTREE, NUMSUB)
 % 
-% This is the trivial one-class classifier, randomly assigning labels
-% and rejecting FRACREJ of the data objects. This procedure is just to
-% show the basic setup of a Prtools classifier, and what is required
-% to define a one-class classifier for dd_tools.
-
-% Copyright Lorne Swersky, swersky@ualberta.ca
-% Faculty of Computing Science, University of Alberta
+%
 
 
 function W = iforest_dd(a, fracrej, numTree, numSub)

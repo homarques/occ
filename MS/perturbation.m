@@ -1,45 +1,16 @@
-%CONSISTENT_OCC
+%Perturbation
 %
-%     W = CONSISTENT_OCC(X,NAME,FRACREJ,RANGE,NRFOLDS)
-%     W = X*CONSISTENT_OCC([],NAME,FRACREJ,RANGE,NRFOLDS)
-%     W = X*CONSISTENT_OCC(NAME,FRACREJ,RANGE,NRFOLDS)
+%     Z = PERTURBATION(X,NRINST,PERC)
 %
 % INPUT
 %   X        Dataset
-%   NAME     Name of a one-class classifier (default = 'gauss_dd')
-%   FRACREJ  Fraction of target objects rejected (default = 0.1)
-%   RANGE    List of values tried for the hyperparameter (default =
-%            linspace(0,0.5,11) )
-%   NRFOLDS  Nr of folds in the crossvalidation (default = 10)
+%   NRINST   Number of perturbed dataset to be returned (default = 20)
+%   PERC     Fraction of target objects rejected (default = 0.9)
 %
 % OUTPUT
-%   W        One-class classifier with optimized hyperparameter
+%   Z        Perturbed datasets
 %
-% DESCRIPTION
-% Optimize the hyperparameters of method W. W should contain the
-% (string) name of a one-class classifier. Using crossvalidation on
-% dataset X (containing just target objects!), this classifier is
-% trained using the target rejection rate FRACREJ and the values of
-% the hyperparameter given in RANGE. The hyperparameters in RANGE
-% should be ordered such that the most simple classifier comes
-% first. New hyperparameters (for more complex classifiers) are used
-% until the classifier becomes inconsistent. Per default
-% NRBAGS-crossvalidation is used.
-%
-% An example for kmeans_dd, where k is optimized:
-%    w = consistent_occ(x,'kmeans_dd',0.1, 1:20)
-%    w = consistent_occ(x,'svdd',0.1, scale_range(x))
-%
-%     W = CONSISTENT_OCC(X,W,FRACREJ,RANGE,NRBAGS,P1,P2,...)
-%
-% Finally, some classifiers require additional parameters, they
-% should be given in P1,P2,... at the end.
-%
-% See also: scale_range, dd_crossval
 
-% Copyright: D.M.J. Tax, D.M.J.Tax@prtools.org
-% Faculty EWI, Delft University of Technology
-% P.O. Box 5031, 2600 GA Delft, The Netherlands
 
 function [data_targets] = perturbation(x, nrinst, perc)
 

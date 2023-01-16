@@ -200,7 +200,7 @@ We use dd_tools implementation for ABOD.</br>
 <p align="center"><img src="/Figures/abod.png" width="40%" height="40%"></p>
 
   - Subspace Outlier Degree ([SOD](/Algorithms/sod.m)) [[20]](#references) </br>
-For SOD, we use our own implementation based on [ELKI](https://elki-project.github.io/)'s implementation. We also encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+For SOD, we use our own implementation based on [ELKI](https://elki-project.github.io/)[[22]](#references) implementation. We also encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
     - Training </br>
     ```w = sod(target_class(train), 0, 10);``` </br>
     - Plot </br>
@@ -209,8 +209,19 @@ For SOD, we use our own implementation based on [ELKI](https://elki-project.gith
 <p align="center"><img src="/Figures/sod.png" width="40%" height="40%"></p>
 
 ### Measures
+  - Area Under the ROC Curve ([ROC AUC](https://homepage.tudelft.nl/n9d04/functions/dd_roc.html)) [[23]](#references) </br>
+  ```dd_auc(dd_roc(test*w));```</br>
+  - Adjusted Precision-at-n ([AdjustedPrec@n](/Measures/dd_precatn.m)) [[23]](#references) </br>
+  ```dd_precatn(test*w);```</br>
+  - Matthews Correlation Coefficient ([MCC](/Measures/dd_mcc.m)) [[24]](#references) </br>
+  ```dd_mcc(test*w);```</br>
 
 ### Model Selection
+  - [Cross-validation](http://homepage.tudelft.nl/n9d04/functions/dd_crossval.html) [[25]](#references) </br>
+  - Self-adaptive Data Shifting ([SDS](/MS/sds.m)) [[26]](#references) </br>
+  - [Perturbation](/MS/perturbation.m) [[27]](#references) </br>
+  - [Uniform Objects](https://homepage.tudelft.nl/n9d04/functions/gendatout.html) [[28]](#references) </br>
+
 
 ### Ensembles
 
@@ -237,4 +248,10 @@ For SOD, we use our own implementation based on [ELKI](https://elki-project.gith
 [19] H. Kriegel, M. Schubert, A. Zimek: Angle-Based Outlier Detection in High-Dimensional Data. SIGKDD, 2008. <br>
 [20] H. Kriegel, P. Kröger, E. Schubert, A. Zimek: Outlier Detection in Axis-Parallel Subspaces of High Dimensional Data. PAKDD, 2009. <br>
 [21] C.-C. Chang, C.-J. Lin: LIBSVM: A Library for Support Vector Machines. TIST, 2011. <br>
-
+[22] E. Schubert, A. Zimek: ELKI: A large open-source library for data analysis. ELKI Release 0.7.5, CoRR arXiv 1902.03616, 2019. <br>
+[23] G. O. Campos, A. Zimek, J. Sander, R. J. G. B. Campello, B. Micenková, E. Schubert, I. Assent, M. E. Houle: On the Evaluation of Unsupervised Outlier Detection: Measures, Datasets, and an Empirical Study. DAMI, 2016. <br>
+[24] B. W. Matthews: Comparison of the Predicted and Observed Secondary Structure of T4 Phage Lysozyme. BBA, 1975. <br>
+[25] J. Han, M. Kamber, J. Pei: Data Mining: Concepts and Techniques. Morgan Kaufmann, 2011. <br>
+[26] S. Wang, Q. Liu, E. Zhu, F. Porikli, J. Yin: Hyperparameter Selection of One-Class Support Vector Machine by Self-Adaptive Data Shifting. Pattern Recognition, 2018. <br>
+[27] H. O. Marques: Evaluation and Model Selection for Unsupervised Outlier Detection and One-Class Classification. PhD thesis, University of São Paulo, 2011. <br>
+[28] D. M. J. Tax, R. P. W. Duin: Uniform Object Generation for Optimizing One-class Classifiers. JMLR, 2001. <br>

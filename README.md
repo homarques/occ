@@ -240,7 +240,7 @@ We use the following performance measures in our experiments: </br>
   
     - Classifier error: </br>
      ```matlab
-     	  % Error on target class
+	  % Error on target class
 	  err_t = dd_error(sds_targets*w);
 	  
 	  % Error on outlier class
@@ -275,7 +275,7 @@ We use the following performance measures in our experiments: </br>
     err_o = zeros(nrinst, 1);
     for j = 1:nrinst
       err_pert = dd_error(pert_targets{j}*w);
-			err_o(j) = err_pert(2);
+      err_o(j) = err_pert(2);
     end
     
     % classifier error

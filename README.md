@@ -111,7 +111,7 @@ We use dd_tools implementation for LP.</br>
 <p align="center"><img src="/Figures/lpdd.png" width="40%" height="40%"></p>
 
   - k-Nearest Neighbor Data Description ([kNN<sub>local</sub>](/Algorithms/lknndd.m)) [[11]](#references) </br>
-We use our own implementation for [kNN<sub>local</sub>], following the same pattern used by the dd_tools classifiers.</br>
+We use our own implementation for kNN<sub>local</sub>, following the same pattern used by the dd_tools classifiers.</br>
       - Training </br>
     ```w = lknndd(target_class(train), 0, 10);``` </br>
     - Plot </br>
@@ -129,12 +129,12 @@ We use dd_tools implementation for Auto-Encoder.</br>
 <p align="center"><img src="/Figures/autoenc.png" width="40%" height="40%"></p>
 
   - Deep SVDD ([DSVDD](https://github.com/lukasruff/Deep-SAD-PyTorch)) [[13]](#references) </br>
-For DSVDD, we use authors' implementation in python. We also encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
-Since the implementation is in python, make sure you have a compatible version of python and all the required packages installed.</br>
+For DSVDD, we use authors' implementation in Python. We also encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+Since the implementation is in python, make sure you have a compatible version of Python and all the required packages installed.</br>
 The list of packages required, you can find [here](/Algorithms/Deep-SAD-PyTorch/requirements.txt).</br>
-Also, make sure your python environment is setup up on MATLAB. If not, [check this out](https://se.mathworks.com/help/matlab/ref/pyenv.html).</br>
+Also, make sure your Python environment is setup up on MATLAB. If not, [check this out](https://se.mathworks.com/help/matlab/ref/pyenv.html).</br>
 
-    - Add python source to MATLAB env </br>
+    - Add Python source to MATLAB env </br>
     ```pathToSAD = fileparts('path/to/Deep-SAD-PyTorch/src/main.py');``` </br>
     ```insert(py.sys.path, int32(0), pathToSAD)``` </br>
      - Training </br>
@@ -145,13 +145,73 @@ Also, make sure your python environment is setup up on MATLAB. If not, [check th
 <p align="center"><img src="/Figures/dsvdd.png" width="40%" height="40%"></p>
 
 - Unsupervised outlier detection algorithms adapted to one-class classification
-  - k-Nearest Neighbors (kNN<sub>global</sub>) [[14]](#references) </br>
-  - Local Outlier Factor (LOF) [[15]](#references) </br>
-  - Local Correlation Integral (LOCI) [[16]](#references) </br>
-  - Global-Local Outlier Scores from Hierarchies (GLOSH) [[17]](#references) </br>
-  - Isolation Forest (iForest) [[18]](#references) </br>
-  - Angle-Based Outlier Detection (ABOD) [[19]](#references) </br>
-  - Subspace Outlier Degree (SOD) [[20]](#references) </br>
+  - k-Nearest Neighbors ([kNN<sub>global</sub>](https://homepage.tudelft.nl/n9d04/functions/knndd.html)) [[14]](#references) </br>
+We use dd_tools implementation for kNN<sub>global</sub>.</br>
+    - Training </br>
+    ```w = knndd(target_class(train), 0, 10);``` </br>
+    - Plot </br>
+    ```scatterd(oc_data, 'legend');``` </br>
+    ```plotc(w)``` </br>
+<p align="center"><img src="/Figures/knn.png" width="40%" height="40%"></p>
+
+  - Local Outlier Factor ([LOF](/Algorithms/lof.m)) [[15]](#references) </br>
+We use our own implementation for LOF in order to reuse the pre-computed quantities related to instances in the training data. The implementation follows the same pattern used by the dd_tools classifiers.
+    - Training </br>
+    ```w = lof(target_class(train), 0, 10);``` </br>
+    - Plot </br>
+    ```scatterd(oc_data, 'legend');``` </br>
+    ```plotc(w)``` </br>
+<p align="center"><img src="/Figures/lof.png" width="40%" height="40%"></p>
+
+  - Local Correlation Integral ([LOCI](/Algorithms/loci.m)) [[16]](#references) </br>
+We use our own implementation for LOCI in order to reuse the pre-computed quantities related to instances in the training data. The implementation follows the same pattern used by the dd_tools classifiers.
+    - Training </br>
+    ```w = loci(target_class(train), 0, 10);``` </br>
+    - Plot </br>
+    ```scatterd(oc_data, 'legend');``` </br>
+    ```plotc(w)``` </br>
+<p align="center"><img src="/Figures/loci.png" width="40%" height="40%"></p>
+
+  - Global-Local Outlier Scores from Hierarchies ([GLOSH](/Algorithms/gloshdd.m)) [[17]](#references) </br>
+We use the authors' implementation in Java for GLOSH. We also encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+Since the implementation is in Java, first, we need to import the Java source to the MATLAB environment:</br>
+
+    - Add Java source to MATLAB env </br>
+    ```javaaddpath Algorithms/GLOSH/GLOSHDD.jar ```</br>
+    ```import ca.ualberta.cs.hdbscanstar.* ```</br>
+    - Training </br>
+    ```w = gloshdd(target_class(train), 0, 10);``` </br>
+    - Plot </br>
+    ```scatterd(oc_data, 'legend');``` </br>
+    ```plotc(w)``` </br>
+<p align="center"><img src="/Figures/glosh.png" width="40%" height="40%"></p>
+
+  - Isolation Forest ([iForest](/Algorithms/iforest_dd.m)) [[18]](#references) </br>
+For iForest, we use a [third-part](https://github.com/zhuye88/iForest) MATLAB implementation. We just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+    - Training </br>
+    ```w = iforest_dd(target_class(train), 0, 10);``` </br>
+    - Plot </br>
+    ```scatterd(oc_data, 'legend');``` </br>
+    ```plotc(w)``` </br>
+<p align="center"><img src="/Figures/iforest.png" width="40%" height="40%"></p>
+
+  - Angle-Based Outlier Detection ([ABOD](https://homepage.tudelft.nl/n9d04/functions/abof_dd.html)) [[19]](#references) </br>
+We use dd_tools implementation for ABOD.</br>
+    - Training </br>
+    ```w = abof_dd(target_class(train), 0);``` </br>
+    - Plot </br>
+    ```scatterd(oc_data, 'legend');``` </br>
+    ```plotc(w)``` </br>
+<p align="center"><img src="/Figures/abod.png" width="40%" height="40%"></p>
+
+  - Subspace Outlier Degree ([SOD](/Algorithms/sod.m)) [[20]](#references) </br>
+For SOD, we use our own implementation based on ELKI's implementation. We also encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+    - Training </br>
+    ```w = sod(target_class(train), 0);``` </br>
+    - Plot </br>
+    ```scatterd(oc_data, 'legend');``` </br>
+    ```plotc(w)``` </br>
+<p align="center"><img src="/Figures/sod.png" width="40%" height="40%"></p>
 
 ### Measures
 

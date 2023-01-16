@@ -209,6 +209,8 @@ For SOD, we use our own implementation based on [ELKI](https://elki-project.gith
 <p align="center"><img src="/Figures/sod.png" width="40%" height="40%"></p>
 
 ### Measures
+Once the classifier is trained, we can compute its performance using different measures. </br>
+We use the following performance measures in our experiments: </br>
   - Area Under the ROC Curve ([ROC AUC](https://homepage.tudelft.nl/n9d04/functions/dd_roc.html)) [[23]](#references) </br>
   ```dd_auc(dd_roc(test*w));```</br>
   - Adjusted Precision-at-n ([AdjustedPrec@n](/Measures/dd_precatn.m)) [[23]](#references) </br>
@@ -217,17 +219,88 @@ For SOD, we use our own implementation based on [ELKI](https://elki-project.gith
   ```dd_mcc(test*w);```</br>
 
 ### Model Selection
-  - [Cross-validation](http://homepage.tudelft.nl/n9d04/functions/dd_crossval.html) [[25]](#references) </br>
-  ```[x, z, I] = dd_crossval(train, 10);```</br>
-  ```w = gmm_dd(target_class(x), 0, 1);``` </br>
-  ```dd_auc(dd_roc(z*w));```</br>
-  - Self-adaptive Data Shifting ([SDS](/MS/sds.m)) [[26]](#references) </br>
+  - [Cross-validation](http://homepage.tudelft.nl/n9d04/functions/dd_crossval.html) [[25]](#references) (supervised) </br>
+    ```matlab
+    nrfolds = 10;
+    err = zeros(nrfolds, 1);
+    I = nrfolds;
+    for j=1:nrfolds
+        %x - training set, z - test set
+        [x,z,I] = dd_crossval(train, I);
+        %training
+        w = gmm_dd(x, 0, 1);
+        %test
+        err(j) = dd_auc(dd_roc(z*w));
+    end
+    mean(err)
+    ```
+  - Self-adaptive Data Shifting ([SDS](/MS/sds.m)) [[26]](#references) (unsupervised) </br>
+    - Generation of data: </br>
   ```[sds_targets, sds_outliers] = sds(target_class(train));```</br>
-  - [Perturbation](/MS/perturbation.m) [[27]](#references) </br>
-  ```pert_targets = perturbation(target_class(train), 20, 0.5);```</br>
-  - [Uniform Objects](https://homepage.tudelft.nl/n9d04/functions/gendatout.html) [[28]](#references) </br>
-  ```unif_targets = gendatout(target_class(train), 100000);```</br>
+  
+    - Classifier error: </br>
+  ```err_t = dd_error(sds_targets*w);```</br>
+  ```err_o = dd_error(sds_outliers*w);```</br>
+  ```err_sds = err_t(1) + err_o(2);```</br>
+  
+  - [Perturbation](/MS/perturbation.m) [[27]](#references) (unsupervised) </br>
+    - Generation of data: </br>
+  ```nrinst = 20;```</br>
+  ```pert_targets = perturbation(target_class(train), nrinst, 0.5);```</br>
+  
+    - Classifier error: </br>
+    ```matlab
+    % Error on target class (cross-validation without outliers)
+    nrfolds = 10;
+    err_t = zeros(nrfolds, 1);
+    I = nrfolds;
+    for j = 1:nrfolds
+        %x - training set, z - test set
+        [x,z,I] = dd_crossval(target_class(train), I);
+        %training
+        w = gmm_dd(x, 0, 1);
+        %test
+        err_xval = dd_error(z, w);
+        err_t(j) = err_xval(1);
+    end
+    
+    % Error on outlier class (perturbed data)
+    err_o = zeros(nrinst, 1);
+    for j = 1:nrinst
+      err_pert = dd_error(pert_targets{j}*w);
+			err_o(j) = err_pert(2);
+    end
+    
+    % classifier error
+    err_pert = mean(err_t) + mean(err_o);
+    ```
 
+  - [Uniform Objects](https://homepage.tudelft.nl/n9d04/functions/gendatout.html) [[28]](#references) (unsupervised) </br>
+    - Generation of data: </br>
+  ```unif_targets = gendatout(target_class(train), 100000);```</br>
+   
+   - Classifier error: </br>
+  ```matlab
+    % Error on target class (cross-validation without outliers)
+    nrfolds = 10;
+    err_t = zeros(nrfolds, 1);
+    I = nrfolds;
+    for j = 1:nrfolds
+        %x - training set, z - test set
+        [x,z,I] = dd_crossval(target_class(train), I);
+        %training
+        w = gmm_dd(x, 0, 1);
+        %test
+        err_xval = dd_error(z, w);
+        err_t(j) = err_xval(1);
+    end
+    
+    % Error on outlier class (uniform data)
+    err_o = dd_error(unif_targets*w);
+ 
+    % classifier error
+    err_unif = mean(err_t) + err_o(2);
+   ```
 
 ### Ensembles
   - Reciprocal Rank Fusion ([RRF](/Ensembles/RRF_dd.m)) [[29]](#references)

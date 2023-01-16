@@ -152,7 +152,7 @@ We use dd_tools implementation for kNN<sub>global</sub>.</br>
   - Local Outlier Factor ([LOF](/Algorithms/lof.m)) [[15]](#references) </br>
 We use our own implementation for LOF in order to reuse the pre-computed quantities related to instances in the training data. The implementation follows the same pattern used by the dd_tools classifiers.
     - Training </br>
-    ```w = lof(target_class(train), 0, 20);``` </br>
+    ```w = lof(target_class(train), 0, 10);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
     ```plotc(w)``` </br>
@@ -161,7 +161,7 @@ We use our own implementation for LOF in order to reuse the pre-computed quantit
   - Local Correlation Integral ([LOCI](/Algorithms/loci.m)) [[16]](#references) </br>
 We use our own implementation for LOCI in order to reuse the pre-computed quantities related to instances in the training data. The implementation follows the same pattern used by the dd_tools classifiers.
     - Training </br>
-    ```w = loci(target_class(train), 0, 10);``` </br>
+    ```w = loci(target_class(train), 0, 0.1);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
     ```plotc(w)``` </br>
@@ -175,7 +175,7 @@ Since the implementation is in Java, first, we need to import the Java source to
     ```javaaddpath Algorithms/GLOSH/GLOSHDD.jar ```</br>
     ```import ca.ualberta.cs.hdbscanstar.* ```</br>
     - Training </br>
-    ```w = gloshdd(target_class(train), 0, 10);``` </br>
+    ```w = gloshdd(target_class(train), 0, 5);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
     ```plotc(w)``` </br>
@@ -184,7 +184,7 @@ Since the implementation is in Java, first, we need to import the Java source to
   - Isolation Forest ([iForest](/Algorithms/iforest_dd.m)) [[18]](#references) </br>
 For iForest, we use a [third-part](https://github.com/zhuye88/iForest) MATLAB implementation. We just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
     - Training </br>
-    ```w = iforest_dd(target_class(train), 0, 10);``` </br>
+    ```w = iforest_dd(target_class(train), 0, 256, 60);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
     ```plotc(w)``` </br>
@@ -200,9 +200,9 @@ We use dd_tools implementation for ABOD.</br>
 <p align="center"><img src="/Figures/abod.png" width="40%" height="40%"></p>
 
   - Subspace Outlier Degree ([SOD](/Algorithms/sod.m)) [[20]](#references) </br>
-For SOD, we use our own implementation based on ELKI's implementation. We also encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
+For SOD, we use our own implementation based on [ELKI](https://elki-project.github.io/)'s implementation. We also encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>
     - Training </br>
-    ```w = sod(target_class(train), 0);``` </br>
+    ```w = sod(target_class(train), 0, 10);``` </br>
     - Plot </br>
     ```scatterd(oc_data, 'legend');``` </br>
     ```plotc(w)``` </br>

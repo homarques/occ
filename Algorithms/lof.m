@@ -8,11 +8,6 @@
 % Breunig, M.M., Kriegel, H., Ng, R.T., and Sander J., "LOF: Identifying
 % Density-Based Local Outliers", ACM SIMOD Record, 2000
 %
-% See also: datasets, lofrangedd, locidd, knndd
-%
-% Copyright: J.H.M. Janssens, jeroen@jeroenjanssens.com
-% TiCC, Tilburg University
-% P.O. Box 90153, 5000 LE Tilburg, The Netherlands
 
 function W = lof(a, fracrej, k, distmat, sD)
 %distmat and sD are optional parameters and are mainly used by lofrangedd

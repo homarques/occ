@@ -8,6 +8,10 @@ On the Evaluation of Outlier Detection and One-Class Classification:
 A Comparative Study of Algorithms, Model Selection, and Ensembles. 
 To appears in: DAMI (2023)
 ```
+
+This repository only intends to provide the source code used in our experiments and instructions on how to use them. </br>
+For details about the algorithms, properties, and parameters, consult our [supplementary material](https://homarques.github.io/occ/SupplementaryMaterial/Algorithms.pdf).
+
 ### Toolboxes
 - [dd_tools](https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/intelligent-systems/pattern-recognition-bioinformatics/pattern-recognition-bioinformatics/data-and-software/dd-tools) [[1]](#references)</br>
 - [PRTools5](http://prtools.tudelft.nl/Guide/37Pages/software.html) [[2]](#references)</br>
@@ -50,19 +54,23 @@ As this dataset is 4-dimensional, first, we will project it in a 2D space using 
 <p align="center"><img src="/Figures/iris2d.png" width="40%" height="40%"></p>
 
 - Creating one-class datasets</br>
-As this is a multi-class dataset, we have to transform it into a one-class dataset. It is done by using the dd_tools command [oc_set](https://homepage.tudelft.nl/n9d04/functions/oc_set.html).<br>
-You only need to set which class(es) will be the inlier (aka target) class.</br>
+	As this is a multi-class dataset, we have to transform it into a one-class dataset. It is done by using the dd_tools command [oc_set](https://homepage.tudelft.nl/n9d04/functions/oc_set.html).<br>
+	You only need to set which class(es) will be the inlier (aka target) class.</br>
 
-Setting class 1 as inlier class:</br>
-```oc_data = oc_set(iris2d, [1]);```</br>
-```scatterd(oc_data, 'legend');```</br>
-<p align="center"><img src="/Figures/oc_iris1.png" width="40%" height="40%"></p>
+	Setting class 1 as inlier class:</br>
+	```oc_data = oc_set(iris2d, [1]);```</br>
+	```scatterd(oc_data, 'legend');```</br>
+	<p align="center"><img src="/Figures/oc_iris1.png" width="40%" height="40%"></p>
 
 - Holdout</br>
 In order to partition data into training and testing, we can use the command [gendat](http://www.37steps.com/prhtml/prtools/gendat.html). In the example below, we partition the dataset to use 80% for training and hold 20% to test:</br>
 ```[train, test] = gendat(oc_data, 0.8);```</br>
 
 ### Algorithms
+The algorithms provided here follow the dd_tools pattern. </br>
+Usually, the first parameter is the training dataset, the second is the percentage of the dataset that can be misclassified during the training, and the third is the algorithm's parameter. </br>
+Note that some algorithms have no parameter, and others have more than one. </br>
+
 - One-class classification algorithms:
   - Gaussian Mixture Model ([GMM](/Algorithms/gmm_dd.m)) [[7]](#references) </br>
     We use MATLAB's own implementation for GMM, we just encapsulated it to follow the same pattern used by the dd_tools classifiers.</br>

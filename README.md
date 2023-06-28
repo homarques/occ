@@ -6,7 +6,7 @@ Repository of the paper:
 H. O. Marques, L. Swersky, J. Sander, A. Zimek and R. J. G. B. Campello. 
 On the Evaluation of Outlier Detection and One-Class Classification: 
 A Comparative Study of Algorithms, Model Selection, and Ensembles. 
-To appears in: DAMI (2023)
+DAMI (2023)
 ```
 
 This repository only intends to provide the source code used in our experiments and instructions on how to use them. </br>
